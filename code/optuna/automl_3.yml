@@ -1,0 +1,72 @@
+INPUT_SIZE:
+- 32
+- 32
+backbone:
+- - 2
+  - Conv
+  - - 32
+    - 3
+    - 2
+    - null
+    - 1
+    - ReLU
+- - 5
+  - Conv
+  - - 64
+    - 5
+    - 1
+    - null
+    - 1
+    - ReLU
+- - 1
+  - InvertedResidualv2
+  - - 32
+    - 4
+    - 2
+- - 2
+  - InvertedResidualv2
+  - - 64
+    - 5
+    - 1
+- - 4
+  - Conv
+  - - 256
+    - 3
+    - 1
+    - null
+    - 1
+    - ReLU
+- - 2
+  - Conv
+  - - 448
+    - 3
+    - 2
+    - null
+    - 1
+    - ReLU
+- - 1
+  - DWConv
+  - - 384
+    - 1
+    - 2
+    - null
+    - Hardswish
+- - 1
+  - Conv
+  - - 768
+    - 1
+    - 1
+- - 1
+  - GlobalAvgPool
+  - []
+- - 1
+  - FixedConv
+  - - 6
+    - 1
+    - 1
+    - null
+    - 1
+    - null
+depth_multiple: 0.25
+input_channel: 3
+width_multiple: 0.75
